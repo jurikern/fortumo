@@ -1,11 +1,16 @@
 !!!
 %html
   %head
-    %title Fortumo
+    %title= title
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
     .container
       .row
+        = render 'layouts/header'
+        = render 'shared/flashes'
+        
         .span12{ :id => "content" }= yield
+        
+        = render 'layouts/footer'

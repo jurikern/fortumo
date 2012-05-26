@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
          :recoverable, :validatable,
          :confirmable, :lockable
 
+  has_many :services, :dependent => :destroy
+
   attr_accessor   :current_password
   attr_accessible :username, :email, :password, :password_confirmation
   

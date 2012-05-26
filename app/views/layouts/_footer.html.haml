@@ -1,0 +1,10 @@
+.navbar.navbar-fixed-bottom
+  .navbar-inner
+    .container-fluid   
+      %ul{ :class => "nav pull-right" }
+        %li= mail_to "juri.semjonov@gmail.com", "Contact me"
+      %p{ :class => "navbar-text" } 
+        = link_to "Fortumo test application", root_path
+        from Juri Semjonov,
+        = "#{Time.now.year}"
+        

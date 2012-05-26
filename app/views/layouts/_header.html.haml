@@ -1,0 +1,31 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container-fluid             
+      = link_to "Fortumo", root_path, :class => "brand"     
+      .btn-group.pull-right
+        - unless user_signed_in?
+          = link_to new_session_path(:user), :class => "btn" do
+            %i{ :class => "icon-user" }
+            Sign in
+          %button{ :class => "btn dropdown-toggle", "data-toggle" => "dropdown" }
+            %span{ :class => "caret" }
+          %ul{ :class => "dropdown-menu" }
+            %li
+              = link_to "/auth/facebook" do
+                %i{ :class => "icon-signal" }
+                Via Facebook
+        - else     
+          = link_to "#", :class => "btn dropdown-toggle", "data-toggle" => "dropdown" do
+            %i{ :class => "icon-user" }
+            = current_user.username.titleize     
+            %span{ :class => "caret" }
+          %ul{ :class => "dropdown-menu" }
+            %li
+              = link_to "/settings" do
+                %i{ :class => "icon-cog" }
+                Settings
+            %li{ :class => "divider" }
+            %li
+              = link_to destroy_session_path(:user), :onclick => "return confirm('Are you sure?')" do
+                %i{ :class => "icon-off" }
+                Sign out

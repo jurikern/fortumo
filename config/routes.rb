@@ -16,5 +16,5 @@ Fortumo::Application.routes.draw do
     }
     
   match '/auth/:service/callback' => 'services#create'
-  match '/auth/failure' => 'services#failure'  
+  match '/auth/failure'           => 'services#failure'  
 end

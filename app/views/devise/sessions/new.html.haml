@@ -1,9 +1,13 @@
-%h2 Sign in
-= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  .inputs
-    = f.input :email, :required => false, :autofocus => true
-    = f.input :password, :required => false
-    = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-  .actions
-    = f.button :submit, "Sign in"
-= render "links"
+.row-fluid{ :id => "sign-in-form-container" }
+  .span6
+    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name),
+      :html => { :autocomplete => :off, :class => "form-horizontal" }) do |f|
+      %fieldset
+        %legend Sign in
+        
+        = f.input :email,    :required => true, :placeholder => "john.smith@example.com", :autofocus => true
+        = f.input :password, :required => true
+        
+        .form-actions
+          .row= f.button :submit, "Sign in"
+  = render "links"
