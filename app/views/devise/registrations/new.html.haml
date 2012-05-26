@@ -1,10 +1,15 @@
-%h2 Sign up
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  = f.error_notification
-  .inputs
-    = f.input :email, :required => true, :autofocus => true
-    = f.input :password, :required => true
-    = f.input :password_confirmation, :required => true
-  .actions
-    = f.button :submit, "Sign up"
-= render "links"
+.row{ :id => "sign-up-form-container" }
+  .span6
+    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name),
+      :html => { :autocomplete => :off, :class => "form-horizontal" }) do |f|
+      %fieldset
+        %legend= "Sign up".html_safe
+        
+        = f.input :email,                 :required => true, :placeholder => "john.smith@example.com", :autofocus => true
+        = f.input :username,              :required => true, :placeholder => "John Smith"
+        = f.input :password,              :required => true
+        = f.input :password_confirmation, :required => true
+        
+        .form_actions
+          .row= f.button :submit, "Sign up", :class => "btn btn-primary"
+-# = render "links"

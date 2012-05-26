@@ -1,10 +1,35 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  # attr_accessible :title, :body
+  devise :database_authenticatable, :registerable,
+         :recoverable, :validatable,
+         :confirmable, :lockable
+
+  attr_accessor   :current_password
+  attr_accessible :username, :email, :password, :password_confirmation
+  
+  validates :username, :presence => true, :format => { :with => /\A[A-z\-\s]+\z/ }
+  
+  def update_with_password(params = {})
+    current_password = params.delete(:current_password)
+    if params[:password].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation) if params[:password_confirmation].blank?
+    end
+    
+    result = if has_no_password? || valid_password?(current_password)
+      self.update_attributes(params)
+    else
+      self.errors.add(:current_password, current_password.blank? ? :blank : :invalid)
+      self.attributes = params
+      false
+    end
+
+    result
+  end 
+  
+  private
+  
+    def has_no_password?
+      self.encrypted_password.blank?
+    end   
 end
