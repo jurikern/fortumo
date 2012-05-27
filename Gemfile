@@ -6,7 +6,7 @@ gem 'rails', '3.2.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :production do
-  gem 'mysql2'
+  gem 'pg'
 end
 
 group :development do
