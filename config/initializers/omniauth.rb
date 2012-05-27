@@ -5,6 +5,4 @@ end
 
 if Rails.env.development?
   OmniAuth.config.full_host = 'http://localhost:3000'
-elsif Rails.env.production?
-  Omniauth.config.full_host = 'http//fortumo.cucombo.com'
 end
