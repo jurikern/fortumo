@@ -26,6 +26,10 @@ class ImagesController < ApplicationController
   def index
     @images = current_user.images.paginate(:page => params[:page], :per_page => 5)
                                  .order(sort_column + " " + sort_direction)
+    if @images.count == 0
+      flash[:error] = "Images not found."
+    end
+    
     @title = "My images | Total #{@images.count}."
   end
   
