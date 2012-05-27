@@ -1,0 +1,22 @@
+.row{ :id => "edit-profile-form-container" }
+  .span6
+    = simple_form_for @user, :url => '/upload-settings', 
+      :html => { :autocomplete => :off, :class => "form-horizontal" } do |f|
+      %fieldset
+        %legend Edit profile information  
+        
+        = f.input :username, :required => false
+        = f.input :email,    :required => false
+        
+        %legend Change password       
+        
+        = f.input :password,              :required => false, :label => "New password"
+        = f.input :password_confirmation, :required => false, :label => "New password confirm"
+        
+        %legend Confirm permissions
+                
+        = f.input :current_password, :required => true  
+               
+        .form-action
+          .row= f.button :submit, "Save changes", :class => "btn btn-success"
+   

@@ -1,0 +1,10 @@
+.row
+  .span6
+    = simple_form_for @image, :html => { :class => "form-horizontal", :multipart => true } do |f|
+      %fieldset
+        %legend Upload image
+        
+        = f.input :photo, :label => false 
+        
+        .form-actions
+          .row= f.button :submit, "Upload image", :class => "btn btn-success"

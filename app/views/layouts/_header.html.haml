@@ -15,6 +15,8 @@
                 %i{ :class => "icon-signal" }
                 Via Facebook
         - else     
+          = link_to "Upload new image", new_images_path, :class => "btn btn-success"
+          = link_to "My images", "/my-images", :class => "btn btn-primary" 
           = link_to "#", :class => "btn dropdown-toggle", "data-toggle" => "dropdown" do
             %i{ :class => "icon-user" }
             = current_user.username.titleize     

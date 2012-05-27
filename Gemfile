@@ -6,7 +6,7 @@ gem 'rails', '3.2.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :production do
-  gem 'pg'
+  gem 'mysql2'
 end
 
 group :development do
@@ -39,6 +39,9 @@ gem 'bootstrap-will_paginate'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+
+gem 'paperclip', '~> 3.0'
+gem 'fancybox-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

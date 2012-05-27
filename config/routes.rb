@@ -17,4 +17,12 @@ Fortumo::Application.routes.draw do
     
   match '/auth/:service/callback' => 'services#create'
   match '/auth/failure'           => 'services#failure'  
+  
+  match '/me', :to => "profiles#show"
+  match '/settings', :to => "profiles#edit"
+  match '/upload-settings', :to => "profiles#update", :via => :put
+  
+  resource :images
+  match '/my-images',  :to => "images#index"
+  match '/delete-image', :to => "images#destroy", :via => :delete
 end

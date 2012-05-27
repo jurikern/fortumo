@@ -1,0 +1,6 @@
+%tr
+  %td= image.created_at
+  %td= link_to( image_tag(image.photo.url(:thumb)), image.photo.url(:original), :title => "#{image.photo_file_name}", :class => "img-gallery" )
+  %td= image.photo_content_type
+  %td= "#{image.photo_file_size/1024}"
+  %td= button_to "Delete", "/delete-image?id=#{image.id}", :method => :delete, :confirm => "Are you sure?", :class => "btn btn-danger"

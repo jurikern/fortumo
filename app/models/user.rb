@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :confirmable, :lockable
 
   has_many :services, :dependent => :destroy
+  has_many :images,   :dependent => :destroy
 
   attr_accessor   :current_password
   attr_accessible :username, :email, :password, :password_confirmation

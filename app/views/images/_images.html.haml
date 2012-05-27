@@ -1,0 +1,15 @@
+= hidden_field_tag :direction, params[:direction]
+= hidden_field_tag :sort, params[:sort] 
+ 
+= will_paginate previous_label: "<", next_label: ">"
+%table{ :class => "table table-bordered" }
+  %thead
+    %tr
+      %th= sortable "created_at"
+      %th 
+      %th= sortable "photo_file_type"
+      %th= sortable "photo_file_size"
+      %th
+  %tbody 
+    = render @images
+= will_paginate previous_label: "<", next_label: ">"
