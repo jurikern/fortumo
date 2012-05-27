@@ -13,7 +13,7 @@ ActionMailer::Base.smtp_settings = {
 }
 
 if Rails.env.production?
-  #
+  ActionMailer::Base.default_url_options[:host] = "fortumo.cucombo.com"
 else
   ActionMailer::Base.default_url_options[:host] = "localhost:3000"
 end
