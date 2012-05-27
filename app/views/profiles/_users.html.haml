@@ -1,0 +1,14 @@
+= hidden_field_tag :direction, params[:direction]
+= hidden_field_tag :sort, params[:sort] 
+ 
+= will_paginate @users, previous_label: "<", next_label: ">"
+%table{ :class => "table table-bordered" }
+  %thead
+    %tr
+      %th= sortable "username"
+      %th= sortable "email"
+      %th= "Total images"
+      %th= sortable "created_at"
+  %tbody 
+    = render @users
+= will_paginate @users, previous_label: "<", next_label: ">"

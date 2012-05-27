@@ -1,7 +1,7 @@
 .navbar.navbar-fixed-top
   .navbar-inner
     .container-fluid             
-      = link_to "Fortumo", root_path, :class => "brand"     
+      = link_to "Fortumo", root_path, :class => "brand" 
       .btn-group.pull-right
         - unless user_signed_in?
           = link_to new_session_path(:user), :class => "btn" do
@@ -16,10 +16,11 @@
                 Via Facebook
         - else     
           = link_to "Upload new image", new_images_path, :class => "btn btn-success"
-          = link_to "My images", "/my-images", :class => "btn btn-primary" 
-          = link_to "#", :class => "btn dropdown-toggle", "data-toggle" => "dropdown" do
+          = link_to "My images (total: #{current_user.images.count})", "/view-images", :class => "btn btn-primary" 
+          = link_to "/me", :class => "btn" do
             %i{ :class => "icon-user" }
-            = current_user.username.titleize     
+            = current_user.username.titleize    
+          = link_to "#", :class => "btn dropdown-toggle", "data-toggle" => "dropdown" do   
             %span{ :class => "caret" }
           %ul{ :class => "dropdown-menu" }
             %li
@@ -31,3 +32,6 @@
               = link_to destroy_session_path(:user), :onclick => "return confirm('Are you sure?')" do
                 %i{ :class => "icon-off" }
                 Sign out
+      .offset1.pull-right
+      .btn-group.pull-right 
+        = link_to "Registered users",  '/registered-users', :class => "btn"               

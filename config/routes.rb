@@ -19,10 +19,11 @@ Fortumo::Application.routes.draw do
   match '/auth/failure'           => 'services#failure'  
   
   match '/me', :to => "profiles#show"
+  match '/registered-users', :to => "profiles#index"
   match '/settings', :to => "profiles#edit"
   match '/upload-settings', :to => "profiles#update", :via => :put
   
   resource :images
-  match '/my-images',  :to => "images#index"
+  match '/view-images',  :to => "images#index"
   match '/delete-image', :to => "images#destroy", :via => :delete
 end

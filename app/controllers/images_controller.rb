@@ -13,7 +13,7 @@ class ImagesController < ApplicationController
     @image = current_user.images.new(params[:image])
     if @image.save
       flash[:notice] = "Image successfully saved."
-      redirect_to "/my-images"
+      redirect_to "/view-images"
     else
       unless @image.errors.include?(:photo)
         flash[:error] = "#{@image.errors.first[0].to_s.gsub(/_/, " ").capitalize} #{@image.errors.first[1]}"
@@ -24,7 +24,23 @@ class ImagesController < ApplicationController
   end
   
   def index
-    @images = current_user.images.paginate(:page => params[:page], :per_page => 5)
+    if params[:id]
+      @user = User.find_by_id(params[:id])
+    else
+      @user = current_user
+    end
+    
+    unless @user
+      flash[:error] = "User not found"
+      redirect_to "/registered-users"
+      return
+    end
+    
+    if @user == current_user
+      @allow_destroy = true
+    end
+  
+    @images = @user.images.paginate(:page => params[:page], :per_page => 5)
                                  .order(sort_column + " " + sort_direction)
     if @images.count == 0
       flash[:error] = "Images not found."
@@ -46,7 +62,7 @@ class ImagesController < ApplicationController
       end
     end
     
-    redirect_to '/my-images'
+    redirect_to '/view-images'
   end
   
   private

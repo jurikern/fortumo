@@ -1,7 +1,13 @@
-class ProfilesController < ApplicationController
-  include ApplicationHelper
-  
+class ProfilesController < ApplicationController  
   before_filter :authenticate_user!
+  
+  include ApplicationHelper
+  helper_method :sort_column, :sort_direction    
+    
+  def index
+    @users = User.paginate(:page => params[:page], :per_page => 5)
+                     .order(sort_column + " " + sort_direction)
+  end  
     
   def show
     if params[:id]
@@ -44,4 +50,14 @@ class ProfilesController < ApplicationController
       render :edit
     end
   end
+  
+  private
+  
+    def sort_column
+      User.column_names.include?(params[:sort]) ? params[:sort] : "id"  
+    end
+    
+    def sort_direction
+      params[:direction] || "desc"  
+    end    
 end

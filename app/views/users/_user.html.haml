@@ -1,0 +1,5 @@
+%tr
+  %td= user.username
+  %td= user.email
+  %td= link_to user.images.count, "/view-images?id=#{user.id}"
+  %td= "#{time_ago_in_words user.created_at} ago"
