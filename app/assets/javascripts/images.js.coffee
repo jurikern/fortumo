@@ -3,6 +3,8 @@ jQuery ->
     $.getScript(this.href)
     return false  
   
-  $(".img-gallery").fancybox()
+  $(".img-gallery").live "click", -> 
+    $(@).fancybox()
+    return false
   
   return false
