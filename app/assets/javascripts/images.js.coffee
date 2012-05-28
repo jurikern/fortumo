@@ -4,7 +4,7 @@ jQuery ->
     return false  
   
   $(".img-gallery").live "click", -> 
-    $(@).fancybox()
+    $.fancybox({})
     return false
   
   return false
