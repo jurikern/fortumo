@@ -4,7 +4,7 @@ jQuery ->
     return false  
   
   $(".img-gallery").live "click", -> 
-    var el = $(@)
+    el = $(@)
     $.fancybox({
       href: el.attr("href")
     })
